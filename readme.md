@@ -3,7 +3,10 @@ MyTLE
 
 Overview
 --------
+This app is admin dashbarod that manage all teachers and students in school.
 
+<img src="app/img/111.jpg">
+<img src="app/img/222.jpg">
 
 Structure
 -----------
