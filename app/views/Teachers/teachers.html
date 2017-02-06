@@ -1,0 +1,85 @@
+﻿<!-- START widgets box-->
+
+<aside ng-include="'app/views/partials/change-center.html'"></aside>
+<div class="clearfix"></div>
+<div class="row pt">
+    <!-- START widget-->
+    <div class="panel panel-default">
+        <!-- START row-->
+        <div class="col-xs-12">
+            <button type="button" id="btnClearFilter" class="btn btn-primary btn-clear-filter" ng-click="clearAllFilter()" ng-show="checkedFlag == true">Clear Filter</button>
+        </div>
+        <!-- START table-responsive-->
+        <div class="table-responsive p" ng-show="showTableData">
+            <table id="teachers-table" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" datatable="" class="row-border hove table-bordered" width="100%">               
+            </table>
+            <select ng-model="count" ng-change="setCount(count)" class="custom-page-length" ng-init="count = '25'" ng-if="pageNation">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+            <div class="custom-pagination" ng-if="pageNation">
+                <button class="btn btn-default" ng-click="setPagePrevNum()">Previous</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page)">{{page}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+1)">{{page+1}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+2)">{{page+2}}</button>
+                <button class="btn btn-default" ng-click="setPageNextNum()">Next</button>
+            </div>
+        </div>
+    </div>
+    <!-- END widgets box-->
+    <div class="panel-body loader-demo" ng-if="showLoadingBar">
+        <h2>Loading...</h2>
+        <div class="ball-scale-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="teacher-detail.html">
+    <div class="content row teacher-info-content">
+        <div class="teacher-info-image col-sm-12">
+            <img ng-src="https://cdn.mytle.com/{{imagePath}}" ng-if="!imagePath.includes('placeholders')">
+            <img src="{{imagePath}}" ng-if="imagePath.includes('placeholders')">
+        </div>
+        <div class="teacher-content col-xs-12">
+            <fieldset class="custom-fieldset">         
+                <legend>Teacher Info</legend>
+                <div class="col-xs-12 teacher-info">
+                    <label for="teacher-name" class="col-xs-7">Name: </label>
+                    <p class="teacher-name col-xs-5" ng-if="name != 'null'">{{name}}</p>
+                </div>
+                <div class="col-xs-12 teacher-info">
+                    <label for="teacher-name" class="col-xs-7">Access Code: </label>
+                    <p class="teacher-name col-xs-5" ng-if="accesscode != 'null'">{{accesscode}}</p>
+                </div>
+                <div class="col-xs-12 teacher-info">
+                    <label for="teacher-name" class="col-xs-7">Status: </label>
+                    <p class="teacher-name col-xs-5" ng-if="status != 'null'">{{status}}</p>                   
+                </div>
+                <div class="col-xs-12 teacher-info">
+                    <label for="teacher-name" class="col-xs-7">Default Classroom: </label>
+                    <p class="teacher-name col-xs-5" ng-if="defaultClass != 'null'">{{defaultClass}}</p>
+                </div>
+                <div class="col-xs-12 teacher-info">
+                    <label for="teacher-name" class="col-xs-7">Current Classroom: </label>
+                    <p class="teacher-name col-xs-5" ng-if="currentClass != 'null'">{{currentClass}}</p>
+                </div>
+                <div class="col-xs-12 teacher-info">
+                    <label for="teacher-name" class="col-xs-7">Last Checked-In: </label>
+                    <p class="teacher-name col-xs-5" ng-if="lastCheckedInTime != 'Invalid Date'">
+                        {{lastCheckedInTime | date :"MM/dd/yyyy"}}
+                    </p>
+                </div>
+                <div class="col-xs-12 teacher-info">
+                    <label for="teacher-name" class="col-xs-7">Last Checked-Out: </label>
+                    <p class="teacher-name col-xs-5" ng-if="lastCheckedOutTime != 'Invalid Date'">
+                        {{lastCheckedOutTime | date :"MM/dd/yyyy"}}
+                    </p>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</script>

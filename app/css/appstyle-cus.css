@@ -1,0 +1,801 @@
+body {
+}
+
+#table-ext-3 th:nth-child(1) {
+    width: 90%;
+}
+
+#table-ext-3 th:nth-child(2) {
+    width: 10%;
+}
+
+#teachers-table thead tr th:nth-child(1) {
+    max-width: 25px !important;
+}
+
+#teachers-table thead th:nth-child(2) {
+    max-width: 25px !important;
+}
+
+.table-user-image-div {
+    background-color: transparent;
+    bottom: 0;
+    height: 12px;
+    opacity: 0.65;
+    position: absolute;
+    right: 0;
+}
+.table-user-image-div em {
+    position: relative;
+    bottom:4px;
+}
+
+
+/*Common css start*/
+
+.div-table-profile-image {
+    background-color: transparent;
+    bottom: 0;
+    height: 12px;
+    opacity: 0.65;
+    position: absolute;
+    right: 0;
+}
+.div-table-profile-image em {
+    position: relative;
+    right: 6px;
+    top: -4px;
+}
+
+a.DTTT_button {
+    background: #5d9cec !important;
+    color: #ffffff !important;
+    border: none !important;
+    margin-left: 5px;
+    width: 40px;
+    height: 30px;
+    text-align: center;    
+}
+.DTTT_button_csv {
+    margin-left: 5px;
+}
+
+.btn-edit {
+    margin-right: 5px;
+}
+.ngdialog-message {
+    font-size: 20px;
+}
+.ngdialog-buttons {
+    text-align: center;
+}
+label {
+    font-size: 16px;
+}
+
+/*Common css end*/
+
+/*Teachers view*/    
+.table-user-image-div em {
+    position: relative;
+    right: 6px;
+    top: -4px;
+}
+
+.div-teacher-profile-image {
+    background-color: transparent;
+    bottom: 0;
+    height: 12px;
+    opacity: 0.65;
+    position: absolute;
+    right: 0px;
+}
+.div-teacher-profile-image em {
+    position: relative;
+    right: 6px;
+    top: -4px;
+}
+
+.max-w-30i {
+    max-width: 30px !important;
+}
+
+.min-w-25i {
+    min-width: 25px !important;
+}
+
+.teacher-img, .children-img {
+    width: 40px;
+    margin: 0 auto;
+}
+
+.dialogwidth800 {
+    width : 800px !important;
+}
+.ngdialog-content {
+    width: 800px !important;
+}
+.children-info-content, .teacher-info-content, .sponsor-info-content {
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+    margin: 0 !important;
+}
+.children-info-content .children-info-image,
+.teacher-info-content .teacher-info-image,
+.sponsor-info-content .sponsor-info-image{
+    float: none;
+    padding: 0;
+    margin: 0;
+    width: 50% !important;
+    margin: 15px;
+    display: flex;
+    align-items: stretch;
+}
+.children-info-content .children-info-image img,
+.sponsor-info-content .sponsor-info-image img{
+    width: 100%;
+}
+.teacher-info-content .teacher-info-image img {
+    width: 100%;
+}
+.children-info-content .children-content,
+.teacher-info-content .teacher-content,
+.sponsor-info-content .sponsor-content{
+    float: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 50% !important;
+    margin: 15px;
+}
+.children-info-content .children-content .custom-fieldset,
+.teacher-info-content .teacher-content .custom-fieldset,
+.sponsor-info-content .sponsor-content .custom-fieldset{
+    margin: 0;
+    height: 100%;
+}
+
+@media(max-width: 767px) {
+    .children-info-content, .teacher-info-content, .sponsor-info-content{
+        display: block;
+        padding: 0;
+        margin: 0 !important;
+    }
+    .children-info-content .children-info-image,
+    .teacher-info-content .teacher-info-image,
+    .sponsor-info-content .sponsor-info-image{
+        display: block;
+        margin: 0 auto;
+        margin-top: 15px;
+        width: 100% !important;
+        text-align: center;
+    }
+    .children-info-content .children-info-image img,
+    .teacher-info-content .teacher-info-image img,
+    .sponsor-info-content .sponsor-info-image img {
+        width: 100%;
+    }
+    .children-info-content .children-content,
+    .teacher-info-content .teacher-content,
+    .sponsor-info-content .sponsor-content{
+        width: 100% !important;
+        margin: 0;
+    }   
+}
+.teacher-info, .children-info, .sponsor-info {
+    display: flex;
+    padding: 0 !important;
+}
+.sponsor-info label,
+.children-info label,
+.teacher-info label {
+    text-align: right;
+}
+.sponsor-info .sponsor-name,
+.children-info .children-name,
+.teacher-info .teacher-name {
+    text-align: left;
+    word-wrap: break-word;
+}
+.sponsor-info .notificatoin {
+    display: flex;
+    align-items: flex-end;
+    //margin-bottom: 5px;
+}
+// switch button
+.active, .inactive {
+    cursor: pointer;
+}
+
+/* activity page start */
+
+i.active { 
+    color: #5cb85c;
+    font-size: 45px !important;
+}
+i.inactive {
+    color: #d9534f;
+    font-size: 45px !important;
+}
+@media (max-width: 767px) {
+    tr :hover {
+        cursor: pointer;
+    }
+}
+
+.approved {
+    color: #09dc09;
+}
+.denied {
+    color: #f50606;
+}
+.pending {
+    color: #5d9cec;
+}
+.activity-picture {
+    width: 40px;
+    height: 40px !important;
+    margin-top: 5px;
+    margin: 0 auto;
+}
+.child-status {
+    text-align: center;
+}
+.activity-infos-content {
+    margin: 0 !important;
+    display: flex;
+    align-items: stretch
+}
+.activity-infos-content .activity-infos {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+}
+.activity-infos-content .activity-infos img {
+    max-height: 450px;
+    width: 100%;
+}
+@media(max-width: 767px) {
+    .activity-infos-content {
+        margin: 0 !important;
+        display: block;
+        
+    }
+    .activity-infos-content .activity-infos img {
+        width: 100%;
+        height: 100%;
+    }   
+}
+
+/**
+ * Tooltip Styles
+ */
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+    position: absolute;
+    bottom: 150%;
+    left: 80%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 80px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: #fff;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+    position: absolute;
+    bottom: 150%;
+    left: 30%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    visibility: visible;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+}
+
+/*Image Gallery*/
+
+.gallery {
+    padding-top: 20px;
+    text-align: center;
+}
+.gallery li {
+    display: inline-block;
+    margin: 0 1em 1em 0;
+    list-style-type: none;
+    text-align: center;
+}
+.gallery img {
+    width: 75px;
+    height: 75px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+@media (max-width: 767px) {
+    .gallery li {
+        margin: 0;
+    }
+}
+
+.title {
+    text-transform: capitalize;
+    margin-left: 30px;
+}
+
+/* flash message*/
+
+.alert {
+    margin-top: 50px;
+    font-size: 18px;
+}
+
+/* change to action selectbox*/
+
+@media (min-width : 1135px) {
+    .btn-clear-classroom{
+        position: absolute;
+        bottom: 50px;
+        right: 430px; 
+    }
+}
+@media (min-width : 768px)  and (max-width : 1134px){
+    .btn-clear-classroom{
+        position: relative;
+        float: right;
+        margin-top: 15px;  
+    }
+}
+@media (min-width : 1024px) {
+    .select-action {
+        position: absolute;
+        bottom: 45px;
+        right: 270px;
+        height: 34px;
+        .wrap-dd-select {
+            border-radius: 3px;
+        }
+    } 
+}
+@media (min-width : 768px)  and (max-width : 1023px){
+    .select-action {
+        position: relative;
+        float: right;
+        margin-top: 15px;
+    }   
+}
+@media (max-width : 767px){
+    .select-action {
+        position: relative;
+        padding-top: 10px;
+        margin: 0 auto;
+        width: 270px;
+        margin-bottom: 150px;
+    }
+    .btn-clear-classroom{
+        position: relative;        
+        margin: 0 auto;
+        margin-top: 10px; 
+        width: 270px;
+    }  
+}
+.select-action, .btn-clear-classroom {
+    display: flex;
+}
+.select-action label, .btn-clear-classroom label{
+    padding-top: 5px;
+}
+.select-action .wrap-dd-select {
+    width: 150px;
+    text-align: center;
+    padding-right: 30px !important;
+    padding-top: 6px !important;
+}
+.select-action .wrap-dd-select .dropdown li a {
+    color: #333 !important;
+}
+.select-action .selected{
+    color: #333;
+    font-weight: normal;
+}
+.sponsor-mass-action .wrap-dd-select{
+    width: 235px !important;
+}
+
+/* classroom type*/
+.btn-wrap {
+    float: right;
+    margin-right: 45px;
+    margin-bottom: 25px;
+}
+.classroom-edit {
+    margin: 30px;
+}
+.classroom-edit .btn-wrap {
+    margin-bottom: 0;
+    margin-right: 15px;
+}
+.classroom-schedule {
+    border: 1px solid;
+    border-color: #999;
+    border-radius: 5px;
+    padding-bottom: 25px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+    .classroom-schedule {
+        height: 400px;
+    }
+}
+.uib-timepicker {
+    margin: 0 auto;
+}
+.timepicker {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.edit-schedule {
+    color: blue;
+}
+.delete-schedule {
+    color: red;
+    margin-left: 10px;
+}
+.btn-add-schedule {
+    background-color: #7266ba;
+    border-color: #7266ba;
+    float: right;
+}
+.btn-add-schedule:active, .btn-add-schedule:focus, .btn-add-schedule:hover {
+    background-color: #7266ba !important;
+    border-color: #7266ba !important;    
+}
+.custom-label {
+    margin-left: 15px;
+}
+.custom-delete-theme {
+    width: 350px;
+    margin: 0 auto;
+}
+.classroom-type {
+    padding-right: 45px;
+    margin-bottom: 20px;
+}
+.btn-new-coupon {
+    float: right;
+    margin-bottom: 10px !important;
+}
+.custom-form{
+    padding-right: 0;
+    padding-left: 0;
+}
+@media (max-width: 767px) {
+    .custom-state-form{
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+fieldset .form-group {
+    margin-bottom: 15px;
+}
+.custom-from-date {
+    padding-left: 0;
+}
+.custom-to-date {
+    padding-right: 0;
+}
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 160px;
+    padding-top: 30px;
+    font-size: 20px;
+    margin-top: 25px;
+}
+.fileUpload input.img-drag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 100%;
+    height: 160px;
+}
+
+.img-preview {
+    width: 100%;
+    height: 180px;
+    border-radius: 5px;
+    border: none;
+}
+.user-block-status img {
+    width: 40px;
+    height: 40px;
+}
+fieldset.custom-fieldset {
+    border: 1px solid !important;
+    border-radius: 5px;
+    margin-top: 13px;       
+}
+fieldset legend {
+    border: none;
+    width: 140px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #000000;
+}
+.ngDialog-classroom-schedule {
+    width: 400px;
+    margin: 0 auto;
+}
+.btn-clear-classroom-name {
+    position: absolute;
+    top: 89px;
+    right: 20px;
+    font-size: 20px !important;
+    color: #ddd;
+}
+.btn-clear-device {
+    position: absolute;
+    top: 57px;
+    right: 20px;
+    font-size: 20px !important;
+    color: #ddd;
+}
+.btn-clear-capacity {
+    position: absolute;
+    top: 36px;
+    right: 20px;
+    font-size: 20px !important;
+    color: #ddd;
+}
+.btn-clear-location {
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    font-size: 20px !important;
+    color: #ddd;
+}
+.btn-clear-city {
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    font-size: 20px !important;
+    color: #ddd;
+}
+.btn-clear-state {
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    font-size: 20px !important;
+    color: #ddd;
+}
+.btn-clear-zipCode {
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    font-size: 20px !important; 
+    color: #ddd;
+}
+.content-wrapper {
+    border: none !important;
+}
+.pt0 {
+    padding-top: 3px !important;
+}
+.dropdown-menu-form {
+    overflow: auto !important;
+    //margin-left: -90px !important;
+    height: 250px !important;
+}
+#sponsors-table_wrapper {
+//    min-height: 330px;
+}
+.uib-timepicker .glyphicon {
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+.btn-clear-filter {
+    background: #5d9cec !important;
+    border-color: #5d9cec !important;
+    position: relative;
+    margin-top: 5px;
+    float: right;
+    z-index: 999;
+}
+@media (min-width: 1024px){
+    .btn-clear-filter {
+        position: absolute;
+        right: 450px;
+        top: 4px;
+    }
+}
+@media (max-width: 1023px) {
+    .btn-clear-filter {
+        position: relative;
+        margin-top: 5px;
+        float: right;
+    }    
+}
+.user-logout {
+    text-align: center !important;
+}
+.user-logout a {
+    padding: 0 !important;
+}
+.select-center-dropdown {
+    color: #333 !important;
+    font-size: 14px !important;
+    width: 150px !important;
+    font-weight: normal !important;
+}
+.select-center-dropdown .dropdown {
+    font-size: 14px !important;
+    text-align: left;
+    z-index: 999 !important;
+}
+.select-center-dropdown .dropdown a {
+    color: #333 !important;
+}
+.select-center-dropdown:after {
+    border-color: #333 transparent !important;
+}
+.multiselect-parent{
+   width: 100%;
+}
+.multiselect-parent .dropdown-toggle{
+    width: 100%;
+    border: none;
+    background-color: #ffffff !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.multiselect-parent .dropdown-toggle .caret {
+  /*  float: right;
+    margin-top: 5px;*/
+}
+
+.multiselect-parent .dropdown-toggle:hover{
+    background-color: #c1c1c1 !important;
+    border-radius: 7px;
+}
+/*.multiselect-parent .dropdown-toggle .caret:hover{
+    background-color: #999999 !important;
+    border-radius: 7px;
+}*/
+.row-border {
+    text-align: center;
+}
+.c-checkbox {
+    padding: 0;
+}
+table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, 
+table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+    margin-left: 5px;
+    margin-top: 3px;
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 0 !important;
+}
+.table-bordered > tbody > tr > td,
+.table-bordered > thead > tr > th {
+    border: 1px solid #f9f9f9 !important;
+}
+table th .c-checkbox {
+    text-align: center;
+    //padding: 0;
+}
+.table-responsive {
+    overflow-x: visible !important;
+}
+.custom-modal .ngdialog-content {
+    width: 400px !important;
+}
+.loading-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-bar .dt-loading {
+    margin-right: 50px;
+}
+.content h4 {
+    text-align: center;
+    line-height: 2;
+}
+.dt-loading {
+    text-align: center;
+}
+.sidebar .nav > li > a {
+    padding-left: 53px;
+}
+.topnavbar .navbar-form {
+    height: 54px;   
+}
+.row .panel-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.row .panel-body h2 {
+    margin-right: 50px;
+}
+
+.dataTables_paginate {
+    display: none;
+}
+.custom-pagination {
+    position: absolute;
+    right: 15px;
+    bottom: 45px;
+}
+.custom-page-length {
+    position: absolute;
+    top: 73px;
+    left: 63px;
+    box-shadow: none;
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #3a3f51;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #dde6e9;
+    border-radius: 4px;
+    width: 66px;
+    z-index: 999;
+}
+.sidebar .nav-heading {
+    text-align: center;
+}

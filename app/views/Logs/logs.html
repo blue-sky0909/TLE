@@ -1,0 +1,37 @@
+﻿<!-- START widgets box-->
+
+<aside ng-include="'app/views/partials/change-center.html'"></aside>
+<flash-message duration="3000"></flash-message>
+<div class="clearfix"></div>
+<div class="row pt">
+    <!-- START widget-->
+    <div class="panel panel-default">
+        <!-- START row-->
+        <!-- START table-responsive-->
+        <div class="table-responsive p" ng-show="showTableData">
+            <table id="teachers-table" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" datatable="" class="row-border hove table-bordered" width="100%">               
+            </table>
+            <select ng-model="count" ng-change="setCount(count)" class="custom-page-length" ng-init="count = '25'" ng-if="pageNation">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+            <div class="custom-pagination" ng-if="pageNation">
+                <button class="btn btn-default" ng-click="setPagePrevNum()">Previous</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page)">{{page}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+1)">{{page+1}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+2)">{{page+2}}</button>
+                <button class="btn btn-default" ng-click="setPageNextNum()">Next</button>
+            </div>
+       </div>
+    </div>
+    <!-- END widgets box-->
+    <div class="panel-body loader-demo" ng-if="showLoadingBar">
+        <h2>Loading...</h2>
+        <div class="ball-scale-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>

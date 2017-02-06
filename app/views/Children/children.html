@@ -1,0 +1,93 @@
+﻿<!-- START widgets box-->
+
+<aside ng-include="'app/views/partials/change-center.html'"></aside>
+<div class="clearfix"></div>
+<div class="row pt">
+    <div class="panel panel-default">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-primary btn-clear-filter" ng-click="clearAllFilter()" ng-show="checkedFlag == true">Clear Filter</button>
+        </div>
+        <!-- START table-responsive-->
+        <div class="table-responsive p" ng-show="showTableData">
+            <table id="children-table" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" datatable="" class="row-border hove table-bordered" width="100%">                
+            </table>
+            <select ng-model="count" ng-change="setCount(count)" class="custom-page-length" ng-init="count = '25'" ng-if="pageNation">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+            <div class="custom-pagination" ng-if="pageNation">
+                <button class="btn btn-default" ng-click="setPagePrevNum()">Previous</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page)">{{page}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+1)">{{page+1}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+2)">{{page+2}}</button>
+                <button class="btn btn-default" ng-click="setPageNextNum()">Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body loader-demo" ng-if="showLoadingBar">
+        <h2>Loading...</h2>
+        <div class="ball-scale-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="children-detail.html">
+    <div class="content row children-info-content">
+        <div class="children-info-image col-xs-12">
+            <img ng-src="{{imagePath}}">
+        </div>
+        <div class="children-content col-xs-12">
+            <fieldset class="custom-fieldset">
+                <legend>Children Info</legend>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">First Name: </label>
+                    <p class="children-name col-xs-7" ng-if="firstName !='null'"> {{firstName}} </p>
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Last Name: </label>
+                    <p class="children-name col-xs-7" ng-if="lastName !='null'"> {{lastName}} </p>
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Date of Birth: </label>
+                    <p class="children-name col-xs-7" ng-if="dob !='null'">{{dob | date: 'MM/dd/yyyy'}}</p> 
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Treatment for Allergies: </label>
+                    <p class="children-name col-xs-7" ng-if="medicine !='null'">{{medicine}}</p>
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Emergency Contact: </label>
+                    <p class="children-name col-xs-7" ng-if="emergency !='null'">{{emergency}}</p> 
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Last Check Out: </label>
+                    <p class="children-name col-xs-7" ng-if="lastCheckedOutTime !='null'">{{lastCheckedOutTime | date: 'MM/dd/yyyy'}}</p>
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Last Check In: </label>
+                    <p class="children-name col-xs-7" ng-if="lastCheckedInTime !='null'">{{lastCheckedInTime | date: 'MM/dd/yyyy'}}</p>
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Activites: </label>
+                    <p class="children-name col-xs-7" ng-if="amountActivities !='null'"> {{amountActivities | number}}</p>
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Approved: </label>
+                    <p class="children-name col-xs-7" ng-if="approveActivities !='null'"> {{approveActivities | number}}</p>
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Pending: </label>
+                    <p class="children-name col-xs-7" ng-if="pendingActivities !='null'"> {{pendingActivities | number}}</p>
+                </div>
+                <div class="col-xs-12 children-info">
+                    <label for="children-name" class="col-xs-5">Denied: </label>
+                    <p class="children-name col-xs-7" ng-if="deniedActivities !='null'"> {{deniedActivities | number}}</p>
+                </div>
+            </fieldset>   
+        </div>
+    </div>
+</script>
+

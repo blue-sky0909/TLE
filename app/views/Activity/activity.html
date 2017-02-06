@@ -1,0 +1,68 @@
+﻿<!-- START widgets box-->
+
+<aside ng-include="'app/views/partials/change-center.html'"></aside>
+<div class="clearfix"></div>
+<div class="row pt">
+    <div class="panel panel-default">
+	    <div class="col-xs-12">
+            <button type="button" class="btn btn-primary btn-clear-filter" ng-click="clearAllFilter()" ng-show="checkedFlag == true">Clear Filter</button>
+        </div>
+	    <div class="table-responsive p" ng-show="showTableData">
+            <table id="sponsors-table" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" datatable="" class="row-border hove table-bordered" width="100%">
+            </table>
+            <select ng-model="count" ng-change="setCount(count)" class="custom-page-length" ng-init="count = '25'" ng-if="pageNation">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+            <div class="custom-pagination" ng-if="pageNation">
+                <button class="btn btn-default" ng-click="setPagePrevNum()">Previous</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page)">{{page}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+1)">{{page+1}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+2)">{{page+2}}</button>
+                <button class="btn btn-default" ng-click="setPageNextNum()">Next</button>
+            </div>
+            <div class="select-action">
+				<div dropdown-select="ddSelectOptions"
+				    dropdown-model="ddSelectSelected"
+				    dropdown-item-label="value"
+				    dropdown-onchange="selectedAction(selected)"
+				    ng-show="showBtnAction == true">
+				</div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body loader-demo" ng-if="showLoadingBar">
+        <h2>Loading...</h2>
+        <div class="ball-scale-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="activity-detail.html">
+    <div class="content row activity-infos-content">
+        <div class="activity-infos col-sm-6 col-xs-12">
+            <img ng-src="{{activityPhoto}}">
+        </div>
+        <div class="activity-infos col-sm-6 col-xs-12">
+            <img ng-src="{{childPhoto}}">
+        </div>       
+    </div>
+</script>
+<script type="text/ng-template" id="select-approved-detail.html">
+	<div class="content">
+		<h3 class="title">{{activityimages[0]. status}} to {{selectAction}}</h3>
+		<ul class="gallery">
+			<li ng-repeat="image in activityimages"> 
+				<img ng-src="{{image.fileName}}" class="img-thumbnail">
+				<p>{{image.childFirstName}} {{image.childLastName}}</p>
+			</li>
+		</ul>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="Apply()">Apply</button>
+		<button class="btn btn-danger" ng-click="Close()">Cancel</button>
+	</div>
+</script>

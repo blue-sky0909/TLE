@@ -1,0 +1,187 @@
+﻿<!-- START widgets box-->
+
+<aside ng-include="'app/views/partials/change-center.html'"></aside>
+<div class="clearfix"></div>
+<div class="row pt">
+    <!-- START widget-->
+    <div class="panel panel-default">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-primary btn-clear-filter" ng-click="clearAllFilter()" ng-show="checkedFlag == true">Clear Filter</button>
+        </div>
+        <!-- START table-responsive-->
+        <div class="table-responsive p" ng-show="showTableData">
+            <table id="teachers-table" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" datatable="" class="row-border hove table-bordered" width="100%">              
+            </table>
+            <select ng-model="count" ng-change="setCount(count)" class="custom-page-length" ng-init="count = '25'" ng-if="pageNation">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+            <div class="custom-pagination" ng-if="pageNation">
+                <button class="btn btn-default" ng-click="setPagePrevNum()">Previous</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page)">{{page}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+1)">{{page+1}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+2)">{{page+2}}</button>
+                <button class="btn btn-default" ng-click="setPageNextNum()">Next</button>
+            </div>
+            <div class="btn-clear-classroom">
+                <button class="btn btn-primary " ng-click="clearClassrooms()" ng-show="showBtnAction == true">Clear Classrooms</button>
+            </div>
+        </div>
+    </div>
+    <!-- END widgets box-->
+    <div class="panel-body loader-demo" ng-if="showLoadingBar">
+        <h2>Loading...</h2>
+        <div class="ball-scale-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="select-classroom-edit.html">
+    <div class="content classroom-edit">
+        <div class="row">
+            <form name="classroomForm" ng-submit="editClassroom()" role="form" novalidate>
+                <div class="col-xs-12 col-sm-5">
+                    <div class="col-xs-12">
+                        <h3>Edit Classroom</h3>
+                        <div class="form-group" ng-class="{'has-error' : classroomForm.classroomName.$invalid && !classroomForm.classroomName.$pristine}">
+                            <label for="classroomName" class="form-label">Name</label>
+                            <input type="text" name="classroomName" class="form-control" ng-model="classroomName" required>
+                            <i class="fa fa-times btn-clear-classroom-name" ng-click="clearClassroomName()"></i>
+                            <p ng-show="classroomForm.classroomName.$invalid && !classroomForm.classroomName.$pristine" class="help-block">Please enter classroom name</p>                     
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group" ng-class="{'has-error' : classroomForm.deviceToken.$invalid && !classroomForm.deviceToken.$pristine}">
+                            <label for="deviceToken" class="form-label">Token(device assigned to this classroom)</label>
+                            <input type="text" name="deviceToken" class="form-control" ng-model="deviceToken" required>
+                            <i class="fa fa-times btn-clear-device" ng-click="clearDeviceToken()"></i>
+                            <p ng-show="classroomForm.deviceToken.$invalid && !classroomForm.deviceToken.$pristine" class="help-block">Please enter token</p> 
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group" ng-class="{'has-error' : classroomForm.classroomCapacity.$invalid && !classroomForm.classroomCapacity.$pristine}">
+                            <label for="classroomCapacity" class="form-label">Capacity</label>
+                            <input type="text" name="classroomCapacity" class="form-control" ng-model="classroomCapacity" required>
+                            <i class="fa fa-times btn-clear-capacity" ng-click="clearClassroomCapacity()"></i>
+                            <p ng-show="classroomForm.classroomCapacity.$invalid && !classroomForm.classroomCapacity.$pristine" class="help-block">Please enter capacity</p> 
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">Classroom Type</label>
+                            <select ng-model="classroomType" class="form-control" ng-options="classroomType.name as classroomType.value for classroomType in classroomTypes">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <label class="form-lable" for="classroomStatus">Status</label>
+                        <div class="switch-buttons"> 
+                            <i class="fa fa-toggle-on active" ng-if="classroomStatus == 'true'" ng-click="changeClassroomStatus()"></i>
+                            <i class="fa fa-toggle-on fa-rotate-180 inactive" ng-if="classroomStatus == 'false'" ng-click="changeClassroomStatus()"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-7">    
+                    <div class="col-xs-12 classroom-schedule">
+                        <h3>Classroom Schedule</h3>
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Begin Time</th>
+                                    <th>End Time</th>
+                                    <th>Event Time</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>12:00 AM</td>
+                                    <td>05:00 PM</td>
+                                    <td>{{selectedEventType.value}}</td>
+                                    <td>
+                                        <i class="fa fa-edit edit-schedule" ng-click="showEditClassroomSchedule(id)"></i>
+                                        <i class="fa fa-trash delete-schedule" ng-click="DeleteClassroomSchedule(id)"></i>
+                                    </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-primary btn-add-schedule" ng-click="showAddClassroomSchedule()">Add</button>
+                    </div>
+                </div>
+                <div class="btn-wrap">
+                    <button type="submit" class="btn btn-success" ng-disabled="classroomForm.$invalid">Save</button>
+                    <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Cancel</button>    
+                </div>        
+            </form>
+        </div>        
+    </div>
+</script>
+
+<script type="text/ng-template" id="classroom-schedule-add.html">
+    <div class="content">
+        <div class="row">
+            <form ng-submit="addClassroomSchedule()" role="form" novalidate>
+                <div class="col-xs-12">
+                    <h3>Classroom Schedule</h3>
+                </div>
+                <div class="col-xs-12 classroom-type">
+                    <label>Event</label>
+                    <select ng-model="eventType" class="form-control" ng-options="classroomType.name as classroomType.value for classroomType in classroomTypes">
+                    </select>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-sm-6 col-xs-12 timepicker">
+                        <label>Begin Date</label>
+                        <uib-timepicker name="timepicker" required="" ng-model="beginDate" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="true"></uib-timepicker>
+                    </div>              
+                    <div class="col-sm-6 col-xs-12 timepicker">
+                        <label>End Date</label>
+                        <uib-timepicker name="timepicker" required="" ng-model="endDate" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="true"></uib-timepicker>
+                    </div>
+                </div> 
+                <div class="col-xs-12">
+                    <div class="btn-wrap">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="classroom-schedule-edit.html">
+    <div class="content">
+        <div class="row">
+            <form ng-submit="editClassroomSchedule()" role="form" novalidate>
+                <div class="col-xs-12">
+                    <h3>Classroom Schedule</h3>
+                </div>
+                <div class="col-xs-12 classroom-type">
+                    <label>Event</label>
+                    <select ng-model="eventType" class="form-control" ng-options="classroomType.name as classroomType.value for classroomType in classroomTypes">
+                    </select>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-sm-6 col-xs-12 timepicker">
+                        <label>Begin Date</label>
+                        <uib-timepicker name="timepicker" required="" ng-model="beginDate" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="true"></uib-timepicker>
+                    </div>              
+                    <div class="col-sm-6 col-xs-12 timepicker">
+                        <label>End Date</label>
+                        <uib-timepicker name="timepicker" required="" ng-model="endDate" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="true"></uib-timepicker>
+                    </div>
+                </div> 
+                <div>
+                    <div class="btn-wrap">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Cancel</button>
+                    </div>
+                </div>
+            </form>            
+        </div>
+    </div>
+</script>

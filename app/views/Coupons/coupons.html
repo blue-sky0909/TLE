@@ -1,0 +1,244 @@
+﻿<!-- START widgets box-->
+
+<aside ng-include="'app/views/partials/change-center.html'"></aside>
+<div class="clearfix"></div>
+<div class="row pt">
+    <!-- START widget-->
+    <div class="panel panel-default">
+        <!-- START row-->
+        <!-- START table-responsive-->
+        <div class="table-responsive p" ng-show="showTableData">
+            <button class="btn btn-primary btn-new-coupon" ng-click="showAddCoupon()">New Coupon</button>
+            <table id="sponsors-table" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" datatable="" class="row-border hove table-bordered" width="100%">               
+            </table>
+            <select ng-model="count" ng-change="setCount(count)" class="custom-page-length" ng-init="count = '25'" ng-if="pageNation">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+            <div class="custom-pagination" ng-if="pageNation">
+                <button class="btn btn-default" ng-click="setPagePrevNum()">Previous</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page)">{{page}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+1)">{{page+1}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+2)">{{page+2}}</button>
+                <button class="btn btn-default" ng-click="setPageNextNum()">Next</button>
+            </div>
+        </div>
+    </div>
+    <!-- END widgets box-->
+    <div class="panel-body loader-demo" ng-if="showLoadingBar">
+        <h2>Loading...</h2>
+        <div class="ball-scale-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="coupon-edit.html">
+    <div class="content row">
+        <div class="form-group">
+            <form name="couponForm" role="form" ng-submit="editCoupon()" novalidate>
+                <fieldset>
+                     <div class="col-xs-12">
+                        <h3 class="title">Coupon New</h3>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="col-xs-12 form-group">
+                                <label for="description">Description</label>
+                                <textarea ng-model="description" rows="4" cols="50" class="form-control"></textarea>                      
+                            </div>
+                            <div class="col-xs-12 form-group" ng-class="{'has-error' : couponForm.location.$invalid && !couponForm.location.$pristine}">
+                                <label for="location">Location:</label>
+                                <input type="text" name="location" ng-model="location" class="form-control" required>
+                                <i class="fa fa-times btn-clear-location" ng-click="clearInputValue('location')"></i>
+                                <p ng-show="couponForm.location.$invalid && !couponForm.location.$pristine" class="help-block">Please enter Location</p> 
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <div class="col-xs-12 col-sm-5 custom-form" ng-class="{'has-error' : couponForm.city.$invalid && !couponForm.city.$pristine}">
+                                    <label for="city">City:</label>
+                                    <input type="text" name="city" ng-model="city" class="form-control" required>
+                                    <i class="fa fa-times btn-clear-city" ng-click="clearInputValue('city')"></i>
+                                    <p ng-show="couponForm.city.$invalid && !couponForm.city.$pristine" class="help-block">Please enter city</p>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 custom-state-form" ng-class="{'has-error' : couponForm.state.$invalid && !couponForm.state.$pristine}">
+                                    <label for="state">State:</label>
+                                    <input type="text" name="state" ng-model="state" class="form-control" required>
+                                    <i class="fa fa-times btn-clear-state" ng-click="clearInputValue('state')"></i>
+                                    <p ng-show="couponForm.state.$invalid && !couponForm.state.$pristine" class="help-block">Please enter state</p>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 custom-form" ng-class="{'has-error' : couponForm.zipCode.$invalid && !couponForm.zipCode.$pristine}">
+                                    <label for="zip">Zip:</label>
+                                    <input type="text" name="zipCode" ng-model="zipCode" class="form-control" required>
+                                    <i class="fa fa-times btn-clear-zipCode" ng-click="clearInputValue('zipCode')"></i>
+                                    <p ng-show="couponForm.zipCode.$invalid && !couponForm.zipCode.$pristine" class="help-block">Please enter zipCode</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group" ng-class="{'has-error' : couponForm.fromDate.$invalid && !couponForm.fromDate.$pristine}">
+                                <div class="col-xs-6 custom-from-date">
+                                    <label for="fromDate">From:</label>
+                                    <datepicker date-format="yyyy-MM-dd" selector="form-control" button-prev="<i class='fa fa-arrow-left'></i>" 
+                                    button-next="<i class='fa fa-arrow-right'></i>">
+                                        <div class="input-group">
+                                            <input class="form-control" placeholder="Choose a date" type="text" name="fromDate" ng-model="fromDate" required/>
+                                            <span class="input-group-addon">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </datepicker>
+                                    <p ng-show="couponForm.fromDate.$invalid && !couponForm.fromDate.$pristine" class="help-block">Please choose a date</p>
+                                </div>
+                                <div class="col-xs-6 custom-to-date" ng-class="{'has-error' : couponForm.toDate.$invalid && !couponForm.toDate.$pristine}">
+                                    <label class="toDate">To:</label>
+                                    <datepicker date-format="yyyy-MM-dd" selector="form-control" button-prev="<i class='fa fa-arrow-left'></i>" 
+                                    button-next="<i class='fa fa-arrow-right'></i>">
+                                        <div class="input-group">
+                                            <input class="form-control" placeholder="Choose a date" type="text" name="toDate" ng-model="toDate" required/>
+                                            <span class="input-group-addon">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </datepicker>
+                                    <p ng-show="couponForm.toDate.$invalid && !couponForm.toDate.$pristine" class="help-block">Please choose a date</p>
+                                <!-- <p class="input-group">
+                                        <input 
+                                               type="text" 
+                                               class="form-control" 
+                                               id="BirthDate" 
+                                               ng-model="NewEmployee.BirthDate" 
+                                               datepicker-popup="dd.MM.yyyy" 
+                                               is-open="Opened" 
+                                               ng-click="Opened=true">
+                                        <span class="input-group-btn">
+                                          <button type="button" class="btn btn-default" ng-click="Opened=true;$event.stopPropagation();">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                          </button>
+                                        </span>
+                                      </p> -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="dropzone col-xs-12" file-dropzone="[image/png, image/jpeg, image/gif]" file="image" file-name="imageFileName" data-max-file-size="3" ng-model="image">
+                            </div>
+                            <!-- <div class="image-container col-xs-12">
+                                <img ng-src={{image}} />
+                                <span class="file-name">{{imageFileName}}</span>
+                            </div> -->
+                            <div class="col-xs-12">
+                                <img src="{{imagePath}}" class="img-preview" ng-model="imagePath" ng-if="uploadme.src ==''">
+                                <img ng-src="{{uploadme.src}}" class="img-preview" ng-model="imagePath"  ng-if="uploadme.src!=''">
+                                <div class="fileUpload btn btn-default">
+                                    <i class="fa fa-cloud-upload"></i><span>Click or <br> Drop an image here <br> to upload</span>
+                                    <input type="file" name="file" id="file-upload" fileread="uploadme.src" class="img-drag">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>           
+                <div class="btn-wrap">
+                    <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="coupon-add.html">
+    <div class="content row">
+        <div class="form-group">
+            <form name="couponForm" role="form" ng-submit="addCoupon()" novalidate>
+                <fieldset>
+                     <div class="col-xs-12">
+                        <h3 class="title">Coupon New</h3>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="col-xs-12 form-group">
+                                <label for="description">Description</label>
+                                <textarea ng-model="description" rows="4" cols="50" class="form-control"></textarea>                      
+                            </div>
+                            <div class="col-xs-12 form-group" ng-class="{'has-error' : couponForm.location.$invalid && !couponForm.location.$pristine}">
+                                <label for="location">Location:</label>
+                                <input type="text" name="location" ng-model="location" class="form-control" required>
+                                <i class="fa fa-times btn-clear-location" ng-click="clearInputValue('location')"></i>
+                                <p ng-show="couponForm.location.$invalid && !couponForm.location.$pristine" class="help-block">Please enter Location</p> 
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <div class="col-xs-12 col-sm-5 custom-form" ng-class="{'has-error' : couponForm.city.$invalid && !couponForm.city.$pristine}">
+                                    <label for="city">City:</label>
+                                    <input type="text" name="city" ng-model="city" class="form-control" required>
+                                    <i class="fa fa-times btn-clear-city" ng-click="clearInputValue('city')"></i>
+                                    <p ng-show="couponForm.city.$invalid && !couponForm.city.$pristine" class="help-block">Please enter city</p>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 custom-state-form" ng-class="{'has-error' : couponForm.state.$invalid && !couponForm.state.$pristine}">
+                                    <label for="state">State:</label>
+                                    <input type="text" name="state" ng-model="state" class="form-control" required>
+                                    <i class="fa fa-times btn-clear-state" ng-click="clearInputValue('state')"></i>
+                                    <p ng-show="couponForm.state.$invalid && !couponForm.state.$pristine" class="help-block">Please enter state</p>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 custom-form" ng-class="{'has-error' : couponForm.zipCode.$invalid && !couponForm.zipCode.$pristine}">
+                                    <label for="zip">Zip:</label>
+                                    <input type="text" name="zipCode" ng-model="zipCode" class="form-control" required>
+                                    <i class="fa fa-times btn-clear-zipCode" ng-click="clearInputValue('zipCode')"></i>
+                                    <p ng-show="couponForm.zipCode.$invalid && !couponForm.zipCode.$pristine" class="help-block">Please enter zipCode</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group" ng-class="{'has-error' : couponForm.fromDate.$invalid && !couponForm.fromDate.$pristine}">
+                                <div class="col-xs-6 custom-from-date">
+                                    <label for="fromDate">From:</label>
+                                    <datepicker date-format="yyyy-MM-dd" selector="form-control" button-prev="<i class='fa fa-arrow-left'></i>" 
+                                    button-next="<i class='fa fa-arrow-right'></i>">
+                                        <div class="input-group">
+                                            <input class="form-control" placeholder="Choose a date" type="text" name="fromDate" ng-model="fromDate" required/>
+                                            <span class="input-group-addon">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </datepicker>
+                                    <p ng-show="couponForm.fromDate.$invalid && !couponForm.fromDate.$pristine" class="help-block">Please choose a date</p>
+                                </div>
+                                <div class="col-xs-6 custom-to-date" ng-class="{'has-error' : couponForm.toDate.$invalid && !couponForm.toDate.$pristine}">
+                                    <label class="toDate">To:</label>
+                                    <datepicker date-format="yyyy-MM-dd" selector="form-control" button-prev="<i class='fa fa-arrow-left'></i>" 
+                                    button-next="<i class='fa fa-arrow-right'></i>">
+                                        <div class="input-group">
+                                            <input class="form-control" placeholder="Choose a date" type="text" name="toDate" ng-model="toDate" required/>
+                                            <span class="input-group-addon">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </datepicker>
+                                    <p ng-show="couponForm.toDate.$invalid && !couponForm.toDate.$pristine" class="help-block">Please choose a date</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="dropzone col-xs-12" file-dropzone="[image/png, image/jpeg, image/gif]" file="image" file-name="imageFileName" data-max-file-size="3" ng-model="image">
+                            </div>
+                            <!-- <div class="image-container col-xs-12">
+                                <img ng-src={{image}} />
+                                <span class="file-name">{{imageFileName}}</span>
+                            </div> -->
+                            <div class="col-xs-12">
+                                <div class="fileUpload btn btn-default">
+                                    <i class="fa fa-cloud-upload"></i><span>Click or <br> Drop an image here <br> to upload</span>
+                                    <input type="file" name="file" id="file-upload" fileread="uploadme.src" class="img-drag">
+                                </div>                                                                
+                                <img ng-src="{{uploadme.src}}" class="img-preview" ng-model="uploadme">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>           
+                <div class="btn-wrap">
+                    <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>

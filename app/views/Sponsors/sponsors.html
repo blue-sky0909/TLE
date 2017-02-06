@@ -1,0 +1,155 @@
+﻿<!-- START widgets box-->
+
+<aside ng-include="'app/views/partials/change-center.html'"></aside>
+<div class="clearfix"></div>
+<div class="row pt">
+    <!-- START widget-->
+    <div class="panel panel-default">
+        <!-- START row-->
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-primary btn-clear-filter" ng-click="clearAllFilter()" ng-show="checkedFlag == true">Clear Filter</button>
+        </div>
+        <!-- START table-responsive-->
+
+        <div class="table-responsive p" ng-show="showTableData">
+            <table id="sponsors-table" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" datatable="" class="row-border hove table-bordered" width="100%">
+            </table>
+            <select ng-model="count" ng-change="setCount(count)" class="custom-page-length" ng-init="count = '25'" ng-if="pageNation">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+            <div class="custom-pagination" ng-if="pageNation">
+                <button class="btn btn-default" ng-click="setPagePrevNum()">Previous</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page)">{{page}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+1)">{{page+1}}</button>
+                <button class="btn btn-primary" ng-click="setPageCurrentNum(page+2)">{{page+2}}</button>
+                <button class="btn btn-default" ng-click="setPageNextNum()">Next</button>
+            </div>
+            <div class="select-action sponsor-mass-action">
+                <div dropdown-select="ddSelectOptions"
+                    dropdown-model="ddSelectSelected"
+                    dropdown-item-label="name"
+                    dropdown-onchange="selectedAction(selected)"
+                    ng-show="showBtnAction == true">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END widgets box-->
+    <div class="panel-body loader-demo" ng-if="showLoadingBar">
+        <h2>Loading...</h2>
+        <div class="ball-scale-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="sponsor-detail.html">
+    <div class="content row sponsor-info-content">
+        <div class="sponsor-info-image col-xs-12">
+            <img ng-src="{{imagePath}}">
+        </div>
+        <div class="sponsor-content col-xs-12">
+            <fieldset class="custom-fieldset">
+                <legend>Sponsor Info</legend>          
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">First Name: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="firstName !='null'">{{firstName}}</p>
+                </div>                 
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Last Name: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="lastName !='null'">{{lastName}}</p>
+                </div>
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Email: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="email !='null'">{{email}}</p> 
+                </div>
+
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Phone1: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="phone1 !='null'">{{phone1}}</p>
+                </div>
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Phone2: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="phone2 !='null'">{{phone2}}</p> 
+                </div>
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Phone3: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="phone3 !='null'">{{phone3}}</p>
+                </div>
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Access Code: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="accesscode !='null'">{{accesscode}}</p>                   
+                </div>
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Status: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="status !='null'">{{status}}</p>                   
+                </div>
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Devices: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="deviceNum !='null'">{{deviceNum}}</p>         
+                </div>
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Last Invoice: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="lastInvoiceUpdate !='null'">{{lastInvoiceUpdate}}</p>         
+                </div> 
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">
+                        Notifications Sent({{today | date: 'MM/dd/yyyy'}}):
+                    </label>
+                    <p class="sponsor-name col-xs-6 notificatoin" ng-if="notificationsSent !='null'">
+                        {{notificationsSent}}
+                    </p>
+                </div>
+                <div class="col-xs-12 sponsor-info">
+                    <label for="sponsor-name" class="col-xs-6">Account Issues: </label>
+                    <p class="sponsor-name col-xs-6" ng-if="emailError !='null'">{{emailError}}</p>
+                </div>             
+            </fieldset>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="sponsor-album.html">
+    <div class="row content">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <datepicker date-format="yyyy-MM-dd" selector="form-control" button-prev="<i class='fa fa-arrow-left'></i>" 
+                button-next="<i class='fa fa-arrow-right'></i>">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Choose a start date" type="text" name="startDate"
+                            ng-model="startDate" required/>
+                        <span class="input-group-addon">
+                        <i class="fa fa-lg fa-calendar"></i>
+                        </span>
+                    </div>
+                </datepicker>
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <datepicker date-format="yyyy-MM-dd" selector="form-control" button-prev="<i class='fa fa-arrow-left'></i>" 
+                button-next="<i class='fa fa-arrow-right'></i>">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Choose a start date" type="text" name="endDate"
+                            ng-model="endDate" required/>
+                        <span class="input-group-addon">
+                        <i class="fa fa-lg fa-calendar"></i>
+                        </span>
+                    </div>
+                </datepicker>
+            </div>
+            <div class="form-group">
+                <label for="childNames">Child List</label>
+
+            </div>
+            <div class="form-group">
+                <label for="watermark">Watermark</label>
+                <input type="checkbox" name="watermark" ng-model="watermark">
+            </div>
+        </div>
+    </div>
+</script>
