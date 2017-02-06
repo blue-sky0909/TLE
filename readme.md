@@ -5,8 +5,8 @@ Overview
 --------
 This app is admin dashbarod that manage all teachers and students in school.
 
-<img src="https://github.com/blue-sky0909/TLE/tree/master/app/img/111.jpg">
-<img src="https://github.com/blue-sky0909/TLE/tree/master/app/img/222.jpg">
+<img src="https://github.com/blue-sky0909/TLE/blob/master/app/img/111.JPG">
+<img src="https://github.com/blue-sky0909/TLE/blob/master/app/img/222.JPG">
 
 Structure
 -----------
